@@ -11,7 +11,7 @@ namespace ActiveSecurity
 {
 	public static class Add
 	{
-		private static void AddHttps(this IServiceCollection services, ISafeLogger logger, HttpsOptions options)
+		public static void AddHttps(this IServiceCollection services, ISafeLogger logger, HttpsOptions options)
 		{
 			if (options.Enabled)
 			{

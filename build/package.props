@@ -11,8 +11,8 @@
     <RepositoryUrl>https://github.com/danielcrenna/ActiveSecurity</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic web security owasp</PackageTags>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>Initial implementation.</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Expose HTTPS redirection.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
