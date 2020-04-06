@@ -11,7 +11,6 @@ namespace ActiveSecurity.Configuration
 	/// </summary>
 	public class HstsOptions : IFeatureToggle
 	{
-		public bool Enabled { get; set; } = true;
 		public HstsPreloadStage Stage { get; set; } = HstsPreloadStage.One;
 		public bool IncludeSubdomains { get; set; } = true;
 		public bool Preload { get; set; } = false;
@@ -37,5 +36,7 @@ namespace ActiveSecurity.Configuration
 				}
 			}
 		}
+
+		public bool Enabled { get; set; } = true;
 	}
 }

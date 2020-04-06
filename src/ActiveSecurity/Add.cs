@@ -38,36 +38,36 @@ namespace ActiveSecurity
 		}
 
 		public static void AddCors(this IServiceCollection services, ISafeLogger logger, CorsOptions cors)
-        {
-            if (!cors.Enabled)
-                return;
+		{
+			if (!cors.Enabled)
+				return;
 
 			logger?.Trace(() => "CORS enabled.");
 
-            services.AddSafeLogging();
-            services.AddRouting(o => { });
+			services.AddSafeLogging();
+			services.AddRouting(o => { });
 			services.AddCors(o =>
-            {
-                o.AddPolicy(Constants.Security.Policies.CorsPolicy, builder =>
-                {
-                    builder
-                        .WithOrigins(cors.Origins ?? new[] {"*"})
-                        .WithMethods(cors.Methods ?? new[] {"*"})
-                        .WithHeaders(cors.Headers ?? new[] {"*"})
-                        .WithExposedHeaders(cors.ExposedHeaders ?? new string[0]);
+			{
+				o.AddPolicy(Constants.Security.Policies.CorsPolicy, builder =>
+				{
+					builder
+						.WithOrigins(cors.Origins ?? new[] {"*"})
+						.WithMethods(cors.Methods ?? new[] {"*"})
+						.WithHeaders(cors.Headers ?? new[] {"*"})
+						.WithExposedHeaders(cors.ExposedHeaders ?? new string[0]);
 
-                    if (cors.AllowCredentials && cors.Origins?.Length > 0 && cors.Origins[0] != "*")
-                        builder.AllowCredentials();
-                    else
-                        builder.DisallowCredentials();
+					if (cors.AllowCredentials && cors.Origins?.Length > 0 && cors.Origins[0] != "*")
+						builder.AllowCredentials();
+					else
+						builder.DisallowCredentials();
 
-                    if (cors.AllowOriginWildcards)
-                        builder.SetIsOriginAllowedToAllowWildcardSubdomains();
+					if (cors.AllowOriginWildcards)
+						builder.SetIsOriginAllowedToAllowWildcardSubdomains();
 
-                    if (cors.PreflightMaxAgeSeconds.HasValue)
-                        builder.SetPreflightMaxAge(TimeSpan.FromSeconds(cors.PreflightMaxAgeSeconds.Value));
-                });
-            });
-        }
+					if (cors.PreflightMaxAgeSeconds.HasValue)
+						builder.SetPreflightMaxAge(TimeSpan.FromSeconds(cors.PreflightMaxAgeSeconds.Value));
+				});
+			});
+		}
 	}
 }
